@@ -10,19 +10,18 @@
 </head>
 <body>
   Maritime Iguanas!
+  <canvas id="the_canvas" width="320" height="240"></canvas>
   <py-script>
     import os
     print(f"machine={os.uname().machine} version={os.uname().version}")
-    import board
     import displayio
-    display = board.DISPLAY
     group = displayio.Group()
     bits = displayio.Bitmap(32,32,8)
     palette = displayio.Palette(8)
     palette[0]=0x125690
     grid = TileGrid(bits, pixel_shader=palette)
     group.append(bits)
-    display.show(group)
+    #display.show(group)
     # Do we need a busy loop? I don't think we need a busy loop.
   </py-script>
 </body>
