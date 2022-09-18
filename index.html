@@ -7,22 +7,38 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
   <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <style>
+    canvas#display { float:right }
+  </style>
+
 </head>
 <body>
-  Maritime Iguanas!
-  <canvas id="the_canvas" width="320" height="240"></canvas>
+  <canvas id="display" width="320" height="240"></canvas>
+  <py-env>
+    - paths:
+      - lib/board.py
+      - lib/displayio.py
+  </py-env>
   <py-script>
     import os
-    print(f"machine={os.uname().machine} version={os.uname().version}")
+    import sys
+    print(f">> {sys.version}")
+    print(f">> machine={os.uname().machine} version={os.uname().version}")
+    canvas = Element("#display")
+    import board
     import displayio
-    group = displayio.Group()
-    bits = displayio.Bitmap(32,32,8)
-    palette = displayio.Palette(8)
-    palette[0]=0x125690
-    grid = TileGrid(bits, pixel_shader=palette)
-    group.append(bits)
-    #display.show(group)
-    # Do we need a busy loop? I don't think we need a busy loop.
+    print(board.DISPLAY)
+    context = board.DISPLAY.getContext('2d')
+   
+    for x in range(5):
+      context.fillStyle="rgb(200,0,0)"
+      context.fillRect(x*50,10,48,18)
+      context.fillStyle="rgb(196,64,64)"
+      context.fillRect(x*50,30,48,20)
+    print(f"display is {board.DISPLAY.width}x{board.DISPLAY.height} pixels")
+
   </py-script>
+
+
 </body>
 </html>
