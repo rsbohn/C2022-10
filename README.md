@@ -9,6 +9,8 @@ The goal of this October 2022 Challenge is to put CircuitPython displayio code i
 
 # See Also
 
+[Saving CircuitPython Bitmaps and Screenshots](https://learn.adafruit.com/saving-bitmap-screenshots-in-circuitpython) A good solution. Explains the details of writing files to flash storage.
+
 [blinka-displayio-pygamedisplay](https://github.com/FoamyGuy/Blinka_Displayio_PyGameDisplay) Desktop displayio using pygame.
 
 [pyscript image upload](https://jeff.glass/post/pyscript-image-upload)
