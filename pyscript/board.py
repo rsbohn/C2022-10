@@ -12,8 +12,7 @@ class CanvasDisplay:
         if self.root_group is not None:
             context = self._canvas.getContext('2d')
             context.clearRect(0,0,self._canvas.width, self._canvas.height)
-            for item in self.root_group:
-                item.render(context)
+            self.root_group.render(context)
     def show(self, group, auto_refresh=True):
         self.root_group = group
         if self._renderer is not None:

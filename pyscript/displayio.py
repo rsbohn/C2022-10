@@ -8,3 +8,6 @@ class Group:
         return f"Group([{self._content.__str__}])"
     def append(self, item):
         self._content.append(item)
+    def render(self, canvas):
+        for item in self:
+            item.render(canvas)
