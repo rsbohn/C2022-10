@@ -1,28 +1,29 @@
-from js import document
+from js import document, console
 from js import setInterval, clearInterval
 from pyodide import create_proxy
 
-DISPLAY=document.getElementById("display")
-top_group = None
-renderer_id = None
+class CanvasDisplay:
+    def __init__(self, canvas):
+        self._canvas = canvas
+        self._renderer = None
+        self.root_group = None
+        self.T = 250 # milliseconds
+    def refresh(self):
+        if self.root_group is not None:
+            context = self._canvas.getContext('2d')
+            context.clearRect(0,0,self._canvas.width, self._canvas.height)
+            for item in self.root_group:
+                item.render(context)
+    def show(self, group, auto_refresh=True):
+        self.root_group = group
+        if self._renderer is not None:
+            clearInterval(self._renderer)
+        if auto_refresh:
+            console.log("auto_refresh=ON")
+            self._renderer = setInterval(create_proxy(lambda: self.refresh()), self.T)
+    def halt(self):
+        console.log("auto_refresh=OFF")
+        clearInterval(self._renderer)
+        self._renderer = None
 
-@create_proxy
-def update():
-    if top_group is not None:
-        context = DISPLAY.getContext('2d')
-        for item in top_group:
-            item.render(context)
-
-def show(group, auto_update=False):
-    global renderer_id
-    global top_group
-    top_group = group
-    if renderer_id is not None:
-        clearInterval(renderer_id)
-    if auto_update:
-        renderer_id = setInterval(update, 1000)
-
-DISPLAY.show = show
-DISPLAY.update = update
-def halt():
-    clearInterval(renderer_id)
+DISPLAY=CanvasDisplay(document.getElementById("display"))

@@ -20,7 +20,7 @@
 </head>
 <body>
     <h1>PyScript Displayio Prototype</h1>
-    <canvas id="display" width="320" height="240"></canvas>
+    <canvas id="display" width="320" height="480"></canvas>
     <py-repl>
 import board
 import displayio
@@ -30,14 +30,12 @@ group = displayio.Group()
 display = board.DISPLAY
 display.show(group)
 
-rect0 = Rect(80,20,41,41)
-rect0.fill = "red"
+rect0 = Rect(10,20,39,79, fill="red")
 group.append(rect0)
-display.update()
     </py-repl>
-<py-repl>
+    <py-repl>
 rect0.fill = "maroon"
-display.update()
-</py-repl>
+#display.refresh()
+    </py-repl>
 </body>
 </html>
