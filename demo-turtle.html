@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>PyScript Displayio Prototype</title>
+    <title>PyScript Turtle Demo</title>
     <link rel="icon" type="image/png" href="favicon.png" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
@@ -20,13 +20,19 @@
     </style>
 </head>
 <body>
-    <h1>PyScript Displayio Prototype</h1>
+    <h1>PyScript Turtle Demo</h1>
     <canvas id="display" width="320" height="480"></canvas>
     
     <py-repl>
 import board
-from adafruit_turtle import turtle
-t = turtle(board.DISPLAY)
+from adafruit_turtle import turtle, Color
+turtle = turtle(board.DISPLAY)
+turtle.pencolor(Color.WHITE)
+turtle.pendown()
+
+for _ in range(4):
+    turtle.forward(25)
+    turtle.left(90)
     </py-repl>
 </body>
 </html>

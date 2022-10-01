@@ -4,6 +4,9 @@
 #
 # SPDX-License-Identifier: MIT
 
+# with help from https://github.com/shulltronics/Adafruit_CircuitPython_turtle/pull/1
+# future: write direct to a canvas context2d?
+
 """
 `adafruit_turtle`
 ================================================================================
@@ -80,7 +83,7 @@ class Color:
         pass
 
 
-class Vec2D(tuple):
+class Vec2D:
     """A 2 dimensional vector class, used as a helper class
     for implementing turtle graphics.
     May be useful for turtle graphics programs also.
@@ -95,7 +98,10 @@ class Vec2D(tuple):
     #     |a| absolute value of a
     #     a.rotate(angle) rotation
     def __init__(self, x, y):
-        super().__init__((x, y))
+        self.values = (x,y)
+    
+    def __getitem__(self, index):
+        return self.values[index]
 
     def __add__(self, other):
         return Vec2D(self[0] + other[0], self[1] + other[1])

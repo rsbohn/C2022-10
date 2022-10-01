@@ -1,4 +1,3 @@
-from js import console
 class Rect:
     def __init__(self, x, y, width, height, *, fill=None, outline=None, stroke=1):
         self.x = x
@@ -15,7 +14,6 @@ class Rect:
         return f"A Rect shape at ({self.x},{self.y})"
 
     def render(self, context):
-        console.log("Render "+str(self))
         context.fillStyle=self.fill
         context.fillRect(self.x, self.y, self.width, self.height)
         context.strokeStyle=self.outline
