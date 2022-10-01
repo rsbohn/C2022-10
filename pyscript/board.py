@@ -24,5 +24,12 @@ class CanvasDisplay:
         console.log("auto_refresh=OFF")
         clearInterval(self._renderer)
         self._renderer = None
+    
+    @property
+    def width(self):
+        return self._canvas.width
+    @property
+    def height(self):
+        return self._canvas.height
 
 DISPLAY=CanvasDisplay(document.getElementById("display"))

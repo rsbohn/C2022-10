@@ -12,6 +12,7 @@
             - pyscript/board.py
             - pyscript/displayio.py
             - pyscript/shapes.py
+            - pyscript/adafruit_turtle.py
     </py-env>
     <style>
         #display {float:right;
@@ -21,21 +22,11 @@
 <body>
     <h1>PyScript Displayio Prototype</h1>
     <canvas id="display" width="320" height="480"></canvas>
+    
     <py-repl>
 import board
-import displayio
-from shapes import Rect
-
-group = displayio.Group()
-display = board.DISPLAY
-display.show(group)
-
-rect0 = Rect(10,20,39,79, fill="red")
-group.append(rect0)
-    </py-repl>
-    <py-repl>
-rect0.fill = "maroon"
-#display.refresh()
+from adafruit_turtle import turtle
+t = turtle(board.DISPLAY)
     </py-repl>
 </body>
 </html>
